@@ -1,0 +1,7 @@
+POST https://admindev.inceptia.ai/api/v1/login/
+Content-Type: application/json
+
+{
+"email": "reactdev@iniceptia.ai",
+"password": "4eSBbHqiCTPdBCTj"
+}
