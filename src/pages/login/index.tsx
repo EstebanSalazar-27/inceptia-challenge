@@ -1,5 +1,7 @@
 import { useState } from "react";
-import Input from "../../components/form/inputs/searchInput";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import Input from "@/components/form/Inputs/searchInput";
 import {
  Button,
  ContCol,
@@ -8,33 +10,44 @@ import {
  Logo,
  PageCont,
  Paragraph,
-} from "../../components/layout";
-import { Credentials } from "../../models";
-import { Login } from "../../api/login";
-import { toast } from "react-toastify";
-import { User } from "../../models/api/login";
-import { useUser } from "../../context/user";
-
+} from "@/components/Layout";
+import { Credentials } from "@/models";
+import { User } from "@/models/api";
+import { Login } from "@/api";
+import { useUser } from "@/context/user";
+const credsInitialVal: Credentials = {
+ email: "",
+ password: "",
+};
 export function LoginPage() {
- const [credentials, setCredentials] = useState<Credentials>({
-  email: "",
-  password: "",
- });
- const { setUser } = useUser();
- function handleChange(e) {
+ const [credentials, setCredentials] = useState<Credentials>(credsInitialVal);
+ const { setIsAuthenticated } = useUser();
+ const navigate = useNavigate();
+
+ /**
+  * @description Funcion para tomar el valor de los fields y setear las credenciales
+  * @param e input element event
+  */
+ function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
   setCredentials({ ...credentials, [e.target.name]: e.target.value });
  }
- function handleSubmit() {
+
+ /**
+  * @description Esta funcion se encarga de manejar el proceso de login contra la api de inceptia
+  */
+ function HandleLogin(): void {
   Login(credentials).then(async (res) => {
    const jsonRes = await res.json();
    if (res.ok && (jsonRes as User)) {
     const user: User = jsonRes;
-    toast("Login Sucessfull");
     localStorage.setItem("user_token", user.token);
-    setUser(jsonRes);
+    setIsAuthenticated(true);
+    toast("Login Sucessfull");
+    navigate("/");
     return;
    }
-   toast(JSON.stringify(jsonRes));
+   // Si la request fallo mostrar un toast con el mensaje de error
+   toast.error(JSON.stringify(jsonRes));
   });
  }
  return (
@@ -52,7 +65,7 @@ export function LoginPage() {
       inputName="password"
       placeholder="Contraseña"
      />
-     <Button onClick={handleSubmit}>Iniciar sesión</Button>
+     <Button onClick={HandleLogin}>Iniciar sesión</Button>
      <Paragraph>Olvidaste tu contraseña ?</Paragraph>
     </form>
    </ContWithImage>

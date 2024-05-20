@@ -1,20 +1,30 @@
-import "./App.css";
-import { LoginPage } from "./pages/login";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { LoginPage } from "@/pages/login";
+import ReportsPage from "@/pages/reports";
+import ProtectedRoute from "@components/ProtectedRoute";
 
 function App() {
  return (
   <>
    <div className="w-full max-w-[1800px]  mx-auto h-screen p-12">
-    <LoginPage />
-    {/* <div className="flex gap-8 w-full h-full">
-     <FiltersBar />
-     <main className="w-4/5 h-full bg-white shadow-md border-b-2 border-b-blue-400">
-      <ReportsPage />
-     </main>
-    </div> */}
-    <ToastContainer  />
+    <Router>
+     <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route
+       index
+       path="/"
+       element={
+        <ProtectedRoute>
+         <ReportsPage />
+        </ProtectedRoute>
+       }
+      />
+     </Routes>
+    </Router>
+
+    <ToastContainer />
    </div>
   </>
  );

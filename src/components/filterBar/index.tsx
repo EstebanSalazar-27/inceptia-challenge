@@ -1,7 +1,10 @@
-import { IWrapper } from "../../models";
-import DateInput from "../form/inputs/dateInput";
-import Label from "../form/Label";
-import { Button } from "../layout";
+import { Filters } from "@/hooks/filters";
+import { IWrapper } from "@/models";
+import { Bot } from "@/models/api";
+import DateInput from "@components/form/Inputs/dateInput";
+import Input from "@components/form/Inputs/searchInput";
+import Label from "@components/form/Label";
+import { Button } from "@components/Layout";
 
 const FilterCont = ({ children }: IWrapper) => {
  return (
@@ -11,18 +14,40 @@ const FilterCont = ({ children }: IWrapper) => {
  );
 };
 
-function FiltersBar() {
+function FiltersBar({
+ bots,
+ handleFilters,
+ cleanFilters,
+ filters,
+}: {
+ bots: Bot[];
+ handleFilters: (
+  e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
+ ) => void;
+ filters: Filters;
+ cleanFilters: () => void;
+}) {
  return (
   <aside className="h-full w-max min-w-[200px] rounded-sm flex flex-col gap-4 border-t-2 ">
    <FilterCont>
-    <Label fieldName="cliente">
-     Cliente
+    <Label fieldName="client">
+     Bots
      <select
-      name="cliente"
-      id="cliente"
+      title="Seleccionar bot"
+      name="bot"
+      id="bot"
       className=" w-full  text-sm bg-white dark:bg-dark-C dark:text-light-B border border-gray-300 hover:border-blue-600  p-2 rounded-sm shadow-sm font-semibold transition text-light-D focus:outline-none focus:shadow-outline"
+      value={filters.bot}
+      onChange={handleFilters}
      >
-      <option value="Bgmotors">Bgmotors</option>
+      <option value="0" disabled selected>
+       Seleccionar bot
+      </option>
+      {bots.map((client) => (
+       <option value={client.id} key={client.id}>
+        {client.name}
+       </option>
+      ))}
      </select>
     </Label>
    </FilterCont>
@@ -30,11 +55,10 @@ function FiltersBar() {
    <FilterCont>
     <Label fieldName="search">
      Buscar
-     <input
-      className="px-2 py-1 w-full border-b-2 border-blue-400 focus:outline-none transition "
-      id="search"
-      name="filter"
-      type="search"
+     <Input
+      value={filters.search}
+      onChange={handleFilters}
+      inputName="search"
       placeholder="Buscar"
      />
     </Label>
@@ -46,17 +70,25 @@ function FiltersBar() {
     <div className="flex flex-col gap-2 ">
      <Label fieldName="fromDate">
       Desde
-      <DateInput fieldName="createdOnFrom" />
+      <DateInput
+       onChange={handleFilters}
+       value={filters.local_updated__date__gte}
+       fieldName="local_updated__date__gte"
+      />
      </Label>
 
      <Label fieldName="toDate">
       Hasta
-      <DateInput fieldName="createdOnTo" />
+      <DateInput
+       onChange={handleFilters}
+       value={filters.local_updated__date__lte}
+       fieldName="local_updated__date__lte"
+      />
      </Label>
     </div>
    </FilterCont>
 
-   <Button>Limpiar filtros</Button>
+   <Button onClick={cleanFilters}>Limpiar filtros</Button>
   </aside>
  );
 }

@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  inceptia-challenge-prod:
+    image: inceptia-challenge:prod
+    container_name: production
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: prod
+      args:
+        - VITE_API_URL=${VITE_API_URL}
+    ports:
+      - "5000:8000"

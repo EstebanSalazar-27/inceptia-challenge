@@ -76,7 +76,7 @@ function Button({
  onClick,
 }: {
  children: any;
- type: "button" | "submit" | "reset" | undefined;
+ type?: "button" | "submit" | "reset" | undefined;
  onClick?: () => void;
 }) {
  return (

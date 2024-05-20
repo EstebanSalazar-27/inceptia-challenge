@@ -1,4 +1,12 @@
-function Label({ children, fieldName }: { children: any; fieldName: string }) {
+import { ReactNode } from "react";
+
+function Label({
+ children,
+ fieldName,
+}: {
+ children: ReactNode;
+ fieldName: string;
+}) {
  return (
   <label
    className="dark:text-light-B text-sm text-slate-600"
@@ -8,4 +16,4 @@ function Label({ children, fieldName }: { children: any; fieldName: string }) {
   </label>
  );
 }
-export default Label
+export default Label;
