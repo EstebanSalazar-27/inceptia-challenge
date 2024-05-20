@@ -1,4 +1,17 @@
-//  User
+//  DTO LOGIN
+export type Credentials = {
+ email: string;
+ password: string;
+};
+// TOKEN PAYLOAD
+export interface TokenPayload {
+ user_id: number;
+ username: string;
+ exp: number;
+ email: string;
+ orig_iat: number;
+}
+// USER
 export interface User {
  business_group: any[];
  email: string;

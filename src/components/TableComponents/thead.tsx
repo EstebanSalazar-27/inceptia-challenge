@@ -1,4 +1,4 @@
-import { IWrapper } from "../../models";
+import { IWrapper } from "../../models/global";
 import { FC } from "react";
 
 export const Thead: FC<IWrapper> = ({ children }) => {

@@ -9,7 +9,7 @@ function Label({
 }) {
  return (
   <label
-   className="dark:text-light-B text-sm text-slate-600"
+   className="dark:text-slate-200 text-sm text-slate-600"
    htmlFor={fieldName}
   >
    {children}

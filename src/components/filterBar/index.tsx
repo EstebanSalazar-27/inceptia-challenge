@@ -1,14 +1,14 @@
 import { Filters } from "@/hooks/filters";
-import { IWrapper } from "@/models";
+import { IWrapper } from "@/models/global";
 import { Bot } from "@/models/api";
 import DateInput from "@components/form/Inputs/dateInput";
 import Input from "@components/form/Inputs/searchInput";
 import Label from "@components/form/Label";
-import { Button } from "@components/Layout";
+import Button from "@components/Layout/Button";
 
 const FilterCont = ({ children }: IWrapper) => {
  return (
-  <div className="bg-white dark:bg-dark-B p-4 shadow rounded-sm">
+  <div className="bg-white dark:bg-stone-800 p-4 shadow rounded-sm">
    {children}
   </div>
  );
@@ -36,7 +36,7 @@ function FiltersBar({
       title="Seleccionar bot"
       name="bot"
       id="bot"
-      className=" w-full  text-sm bg-white dark:bg-dark-C dark:text-light-B border border-gray-300 hover:border-blue-600  p-2 rounded-sm shadow-sm font-semibold transition text-light-D focus:outline-none focus:shadow-outline"
+      className=" w-full  text-sm bg-white dark:bg-stone-800 dark:text-slate-200 border border-gray-300 hover:border-blue-600  p-2 rounded-sm shadow-sm font-semibold transition text-light-D focus:outline-none focus:shadow-outline"
       value={filters.bot}
       onChange={handleFilters}
      >
@@ -49,18 +49,6 @@ function FiltersBar({
        </option>
       ))}
      </select>
-    </Label>
-   </FilterCont>
-
-   <FilterCont>
-    <Label fieldName="search">
-     Buscar
-     <Input
-      value={filters.search}
-      onChange={handleFilters}
-      inputName="search"
-      placeholder="Buscar"
-     />
     </Label>
    </FilterCont>
 

@@ -1,12 +1,7 @@
-import React, {
- createContext,
- useState,
- useContext,
- ReactNode,
- useEffect,
-} from "react";
-import { IWrapper, TokenPayload } from "../models";
+import React, { createContext, useState, useContext, useEffect } from "react";
+import { TokenPayload } from "../models/api";
 import { decodeToken, isExpired } from "react-jwt";
+import { IWrapper } from "@/models/global";
 
 interface UserContextProps {
  user: TokenPayload | null;

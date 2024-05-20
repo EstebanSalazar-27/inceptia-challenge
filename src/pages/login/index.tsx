@@ -2,16 +2,13 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Input from "@/components/form/Inputs/searchInput";
-import {
- Button,
- ContCol,
- ContWithImage,
- HeaderH3,
- Logo,
- PageCont,
- Paragraph,
-} from "@/components/Layout";
-import { Credentials } from "@/models";
+import Button from "@/components/Layout/Button";
+import Logo from "@/components/InceptiaLogo";
+import { ContCol, PageCont } from "@/components/Layout/Containers";
+import ContWithImage from "@/components/Layout/ContWithImage";
+import Header from "@/components/Layout/Header";
+import { Paragraph } from "@/components/Layout/Paragraph";
+import { Credentials } from "@/models/api";
 import { User } from "@/models/api";
 import { Login } from "@/api";
 import { useUser } from "@/context/user";
@@ -43,7 +40,7 @@ export function LoginPage() {
     localStorage.setItem("user_token", user.token);
     setIsAuthenticated(true);
     toast("Login Sucessfull");
-    navigate("/");
+    navigate("/logs");
     return;
    }
    // Si la request fallo mostrar un toast con el mensaje de error
@@ -56,7 +53,7 @@ export function LoginPage() {
     <form className="p-4 w-3/5 flex flex-col gap-6">
      <ContCol>
       <Logo size="md" />
-      <HeaderH3>Iniciar sesión</HeaderH3>
+      <Header>Iniciar sesión</Header>
      </ContCol>
 
      <Input onChange={handleChange} inputName="email" placeholder="Email" />

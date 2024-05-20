@@ -1,4 +1,4 @@
-import { IWrapper, ThemeModes } from "@/models";
+import { ThemeModes } from "@/models/global";
 import {
  Context,
  ReactNode,
@@ -9,10 +9,10 @@ import {
 } from "react";
 
 /**
- * Interface describing the structure of the theme context.
+ * Interfaz que describe la estructura del contexto del tema.
  * @interface IThemeContext
- * @property {() => void} handleMode - Function to toggle between dark and light modes.
- * @property {boolean} isDarkMode - Boolean indicating whether dark mode is enabled.
+ * @property {() => void} handleMode - Función para alternar entre modos oscuro y claro.
+ * @property {boolean} isDarkMode - Booleano que indica si el modo oscuro está habilitado.
  */
 interface IThemeContext {
  handleMode: () => void;
@@ -20,32 +20,32 @@ interface IThemeContext {
 }
 
 /**
- * Context to manage theme-related information.
- * @constant {Context<IThemeContext>} ThemeContext - React context for the theme.
+ * Contexto para gestionar la información relacionada con el tema.
+ * @constant {Context<IThemeContext>} ThemeContext - Contexto de React para el tema.
  */
 const ThemeContext: Context<IThemeContext> = createContext({} as IThemeContext);
 
 /**
- * Custom hook to consume the theme context within components.
+ * Hook personalizado para consumir el contexto del tema dentro de los componentes.
  * @function UseThemeContext
- * @returns {IThemeContext} - Theme context values.
- * @throws {Error} - Throws an error if used outside the `ThemeProvider`.
+ * @returns {IThemeContext} - Valores del contexto del tema.
+ * @throws {Error} - Lanza un error si se usa fuera del `ThemeProvider`.
  */
 export const UseThemeContext = (): IThemeContext => {
  const context: IThemeContext = useContext(ThemeContext);
  if (!context)
-  throw new Error("ThemeContext must be consumed inside the ThemeProvider");
+  throw new Error("ThemeContext debe ser consumido dentro del ThemeProvider");
  return context;
 };
 
 /**
- * Provider component to wrap the application and provide the theme context.
+ * Componente proveedor para envolver la aplicación y proporcionar el contexto del tema.
  * @function ThemeProvider
- * @param {object} props - Props for the `ThemeProvider` component.
- * @param {ReactNode} props.children - Child components wrapped by the theme provider.
- * @returns {JSX.Element} - JSX element representing the theme provider.
+ * @param {object} props - Propiedades para el componente `ThemeProvider`.
+ * @param {ReactNode} props.children - Componentes hijos envueltos por el proveedor del tema.
+ * @returns {JSX.Element} - Elemento JSX que representa el proveedor del tema.
  */
-const ThemeProvider = ({ children }: IWrapper) => {
+const ThemeProvider = ({ children }: { children: ReactNode }) => {
  const [isDarkMode, setIsDarkMode] = useState(() => {
   const isDarkModeInLocal = window.localStorage.getItem("isDarkMode");
   return isDarkModeInLocal === "true";
@@ -56,8 +56,8 @@ const ThemeProvider = ({ children }: IWrapper) => {
  };
 
  /**
-        Effect to update local storage and apply dark mode styling.
-     */
+  * Efecto para actualizar el almacenamiento local y aplicar el estilo del modo oscuro.
+  */
  useEffect(() => {
   window.localStorage.setItem("isDarkMode", JSON.stringify(isDarkMode));
   const rootElement = document.getElementById("root");

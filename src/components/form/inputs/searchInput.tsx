@@ -1,4 +1,4 @@
-import { InputValue } from "../../../models";
+import { InputValue } from "../../../models/global";
 
 function Input({
  inputName,
@@ -16,7 +16,7 @@ function Input({
    name={inputName}
    placeholder={placeholder}
    onChange={onChange}
-   className="focus:outline-none p-2 border-b-2 w-full border-b-blue-100 focus:border-b-blue-500 transition-colors text-slate-800 font-nunito"
+   className="focus:outline-none p-2 border-b-2 w-full border-b-blue-100 focus:border-b-blue-500 transition-colors text-slate-800  dark:text-slate-200 dark:bg-stone-700"
    type="search"
    value={value}
   />

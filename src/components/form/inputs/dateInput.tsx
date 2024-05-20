@@ -1,4 +1,4 @@
-import { InputValue } from "../../../models";
+import { InputValue } from "../../../models/global";
 
 function DateInput({
  fieldName,
@@ -7,11 +7,12 @@ function DateInput({
 }: {
  fieldName: string;
  onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
- value: InputValue
+ value: InputValue;
 }) {
  return (
   <input
-   className="px-2 py-1 w-full  text-sm  bg-light-A  dark:bg-dark-C dark:text-light-B  rounded-sm focus:outline-none transition "
+   title="Seleccionar fecha"
+   className="px-2 py-1 w-full  text-sm  bg-light-A  dark:bg-stone-700 dark:text-slate-200  rounded-sm focus:outline-none transition "
    name={fieldName}
    id={fieldName}
    type="date"
