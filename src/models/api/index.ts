@@ -70,12 +70,12 @@ export interface CaseLog {
  commitment: string;
  final_sip_code: number;
  got_promise: boolean;
- responses: Response[];
+ responses: Message[];
  result_id: number;
- transcription: Response[];
+ transcription: Message[];
 }
 
-export interface Response {
+export interface Message {
  confidence: number;
  text: string;
  time: number;
