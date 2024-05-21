@@ -1,3 +1,7 @@
+### .ENV
+
+1. Crear el archivo .env en la raiz del proyecto y agregar esta variable dentro VITE_API_URL = https://admindev.inceptia.ai/api/v1/ (Paso importante para poder interactuar con la api)
+
 ### PASOS PARA CORRER EL PROYECTO
 
 1. Clonar el repositorio
@@ -8,8 +12,8 @@
 
 ## Requisitos
 
-1. Docker  <!--https://docs.docker.com/engine/install/-->
-2. Docker Compose  <!-- DOCS https://docs.docker.com/compose/install/ -->
+1. Docker <!--https://docs.docker.com/engine/install/-->
+2. Docker Compose <!-- DOCS https://docs.docker.com/compose/install/ -->
 
 ## Levantar el contenedor
 
