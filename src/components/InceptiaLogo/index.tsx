@@ -11,7 +11,7 @@ function Logo({ size = "sm" }: LogoProps) {
  return (
   <img
    className={`${LogoSizes[size]} rounded-sm shadow-sm`}
-   src="../../assets/inceptia.png"
+   src="/inceptia.png"
    alt="Inceptia Logo"
   />
  );

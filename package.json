@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "compose:dev": "docker-compose -f docker-compose-dev.yml up -d --build --remove-orphans",
+    "compose:prod": "docker-compose -f docker-compose-prod.yml up -d --build --remove-orphans",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"

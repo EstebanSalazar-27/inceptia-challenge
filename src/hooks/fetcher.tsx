@@ -1,35 +1,35 @@
 import { useState, useEffect } from "react";
 
 /**
- * Generic Types for the useFetcher hook.
- * @template T - Type for the response of the request.
- * @template P - Type for the parameters of the request.
+ * Tipos genéricos para el hook useFetcher.
+ * @template T - Tipo para la respuesta de la solicitud.
+ * @template P - Tipo para los parámetros de la solicitud.
  */
 interface UseFetcherProps<T, P> {
  /**
-  * Function that makes the data request.
-  * @param {P} [params] - Optional parameters for the request.
-  * @returns {Promise<T | undefined>} - Promise resolved with the response of the request.
+  * Función que realiza la solicitud de datos.
+  * @param {P} [params] - Parámetros opcionales para la solicitud.
+  * @returns {Promise<T | undefined>} - Promesa resuelta con la respuesta de la solicitud.
   */
  requestFn: (params?: P) => Promise<T | undefined>;
 
  /**
-  * Dependencies that trigger the request when they change.
+  * Dependencias que activan la solicitud cuando cambian.
   */
  dependencies: any[];
 }
 
 /**
- * Custom hook for making data requests.
- * @template T - Type for the response of the request.
- * @template D - Type for the data returned by the hook.
- * @template P - Type for the parameters of the request.
+ * Hook personalizado para realizar solicitudes de datos.
+ * @template T - Tipo para la respuesta de la solicitud.
+ * @template D - Tipo para los datos devueltos por el hook.
+ * @template P - Tipo para los parámetros de la solicitud.
  * 
 
- * @param {Function} options.requestFn - Function that makes the data request.
- * @param {any[]} options.dependencies - Dependencies that trigger the request when they change.
+ * @param {Function} options.requestFn - Función que realiza la solicitud de datos.
+ * @param {any[]} options.dependencies - Dependencias que activan la solicitud cuando cambian.
  * 
- * @returns {{ data: D, loading: boolean, error: any }} - Object with data, loading state, and error.
+ * @returns {{ data: D, loading: boolean, error: any }} - Objeto con datos, estado de carga y error.
  */
 export function useFetcher<T, D, P>({
  requestFn,
@@ -40,8 +40,8 @@ export function useFetcher<T, D, P>({
  const [error, setError] = useState<any>(undefined);
 
  /**
-  * Function to make the data request.
-  * @param {P} [searchParams] - Optional parameters for the request.
+  * Función para realizar la solicitud de datos.
+  * @param {P} [searchParams] - Parámetros opcionales para la solicitud.
   */
  const fetchData = async (searchParams?: P) => {
   try {
@@ -51,6 +51,7 @@ export function useFetcher<T, D, P>({
    setData(response);
   } catch (err) {
    setError(err);
+   setData(undefined);
    console.error(err);
   } finally {
    setLoading(false);
@@ -61,7 +62,7 @@ export function useFetcher<T, D, P>({
   return urlObj.search;
  };
  useEffect(() => {
-  // Get search parameters and pass them to the request
+  // Obtener parámetros de búsqueda y pasarlos a la solicitud
   const search = getSearchParamsString(window.location.href);
   fetchData(search as P);
  }, dependencies);

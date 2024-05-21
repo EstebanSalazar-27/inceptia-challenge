@@ -4,6 +4,15 @@ interface PaginationProps {
  onNextPage: () => void;
  onPrevPage: () => void;
 }
+/**
+ * 
+ * @description Este componente se encarga de manejar las acciones de paginas otorgadas por un hight-order-component
+ * @param currentPage Pagina actual
+ * @param totalPages Total de paginas
+ * @param onNextPage Accion para siguiente pagina
+ * @param onPrevPage Accion para pagina anterior
+ * @returns 
+ */
 const Pagination = ({
  currentPage,
  totalPages,
@@ -23,7 +32,7 @@ const Pagination = ({
    <button
     onClick={handlePrevPage}
     disabled={currentPage === 1}
-    className="px-3 py-1 mr-2 bg-white dark:bg-stone-800  text-gray-400 rounded"
+    className="px-3 py-1 mr-2 bg-slate-200 dark:bg-stone-800  text-gray-600 rounded"
    >
     Prev
    </button>
@@ -33,7 +42,7 @@ const Pagination = ({
    <button
     onClick={handleNextPage}
     disabled={currentPage === totalPages}
-    className="px-3 py-1 mr-2 bg-white dark:bg-stone-800  text-gray-400 rounded"
+    className="px-3 py-1 mr-2 bg-slate-200 dark:bg-stone-800  text-gray-600 rounded"
    >
     Next
    </button>

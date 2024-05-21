@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
-import { TokenPayload } from "../models/api";
+import { TokenPayload } from "@/models/api";
 import { decodeToken, isExpired } from "react-jwt";
 import { IWrapper } from "@/models/global";
 
@@ -55,7 +55,7 @@ export const UserProvider = ({ children }: IWrapper) => {
 export const useUser = () => {
  const context = useContext(UserContext);
  if (!context) {
-  throw new Error("useUser must be used within a UserProvider");
+  throw new Error("Debe ser usado dentro del UserProvider");
  }
  return context;
 };

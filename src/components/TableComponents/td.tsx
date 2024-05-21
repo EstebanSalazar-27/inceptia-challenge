@@ -7,12 +7,13 @@ export const TD = ({
  children: ReactNode;
  title?: string;
 }) => {
+ const EMPTYCELL = "-------";
  return (
   <td
    title={title}
    className=" whitespace-nowrap overflow-hidden overflow-ellipsis lowercase first-letter:capitalize    py-2 text-center text-xs max-w-[150px]  border-x-[1px]  dark:border-stone-700 dark:text-slate-200"
   >
-   {children}
+   {!children ? EMPTYCELL : children}
   </td>
  );
 };

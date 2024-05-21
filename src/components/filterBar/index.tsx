@@ -2,7 +2,6 @@ import { Filters } from "@/hooks/filters";
 import { IWrapper } from "@/models/global";
 import { Bot } from "@/models/api";
 import DateInput from "@components/form/Inputs/dateInput";
-import Input from "@components/form/Inputs/searchInput";
 import Label from "@components/form/Label";
 import Button from "@components/Layout/Button";
 
@@ -59,6 +58,7 @@ function FiltersBar({
      <Label fieldName="fromDate">
       Desde
       <DateInput
+       max={filters.local_updated__date__lte}
        onChange={handleFilters}
        value={filters.local_updated__date__gte}
        fieldName="local_updated__date__gte"
@@ -68,6 +68,7 @@ function FiltersBar({
      <Label fieldName="toDate">
       Hasta
       <DateInput
+       min={filters.local_updated__date__gte}
        onChange={handleFilters}
        value={filters.local_updated__date__lte}
        fieldName="local_updated__date__lte"

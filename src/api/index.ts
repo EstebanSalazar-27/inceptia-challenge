@@ -1,5 +1,5 @@
 import { getTokenFromStorage } from "@/helpers/getToken";
-import { Credentials } from "@/models/global";
+import { Credentials } from "@/models/api";
 import { Bot, RootLogsReq } from "@/models/api";
 
 const apiUrl: string = import.meta.env.VITE_API_URL;

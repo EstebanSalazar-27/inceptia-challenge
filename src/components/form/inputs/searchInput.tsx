@@ -1,4 +1,4 @@
-import { InputValue } from "../../../models/global";
+import { InputValue } from "@/models/global";
 
 function Input({
  inputName,

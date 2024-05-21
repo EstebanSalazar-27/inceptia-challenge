@@ -8,7 +8,7 @@ function ContWithImage({ children }: IWrapper) {
    </div>
 
    <div
-    className={`w-3/5 max-md:w-full h-full blur-[.5px] bg-[url('https://www.galicia.ar/content/dam/galicia/banco-galicia/personas/canales/onb/ONBGallery/ilustraciones/2023/Inversiones-2-LuciaPerini.jpg')] bg-cover bg-center bg-no-repeat`}
+    className={`w-3/5 max-md:w-full h-full blur-[.5px] bg-[url('/login-image.jpg')] bg-cover bg-center bg-no-repeat`}
    />
   </div>
  );
